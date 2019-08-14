@@ -24,8 +24,8 @@ import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
 import com.ilh.alpro_telkom.ui.pelapor.PelaporActivity;
-import com.ilh.alpro_telkom.ui.teknisi.TeknisiActivity;
-import com.ilh.alpro_telkom.ui.validator.ValidatorActivity;
+import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
+import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -133,11 +133,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (responseErrorModel.getRule().contains("validator")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
                         finishAffinity();
-                        startActivity(new Intent(getApplicationContext(), ValidatorActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ValidatorNavActivity.class));
                     } else if (responseErrorModel.getRule().contains("teknisi")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
                         finishAffinity();
-                        startActivity(new Intent(getApplicationContext(), TeknisiActivity.class));
+                        startActivity(new Intent(getApplicationContext(), TeknisiNavActivity.class));
                     } else if (responseErrorModel.getRule().contains("user")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
                         finishAffinity();
