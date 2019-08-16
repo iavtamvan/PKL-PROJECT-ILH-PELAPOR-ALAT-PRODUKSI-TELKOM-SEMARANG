@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.teknisi.TeknisiActivity">
+    tools:context=".ui.teknisi.TeknisiNavActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_image_black_24dp"/>
+            android:src="@drawable/account"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,6 +24,7 @@
             android:layout_marginRight="8dp"
             android:id="@+id/tv_username"
             android:text="Usename"
+            android:textSize="20dp"
             android:textColor="@android:color/holo_red_dark"
             android:gravity="center"
             android:textStyle="bold"/>

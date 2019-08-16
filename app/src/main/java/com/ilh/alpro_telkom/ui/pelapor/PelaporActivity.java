@@ -48,11 +48,11 @@ public class PelaporActivity extends AppCompatActivity {
     private TextView tvKeluar;
     private TextView tvUsername;
     private EditText edtDeskripsi;
+    private EditText edtLokasi;
     private Button btnKirimPelapor;
 
     private String imagePath;
     private String getNameImage;
-    private String alamat;
     private String idAkun;
 
     private ProgressDialog p;
@@ -119,7 +119,7 @@ public class PelaporActivity extends AppCompatActivity {
             public void onResponse(Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getResult().equals("success")) {
-                        Toast.makeText(getApplicationContext(), "Sukses Imagenya keluhabn", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "uploaded successfully", Toast.LENGTH_SHORT).show();
                         sendData();
 
                     } else {
@@ -146,7 +146,7 @@ public class PelaporActivity extends AppCompatActivity {
         ApiService apiService = ApiConfigServer.getApiService();
         apiService.postDataPelapor("http://devlop.can.web.id/uploads/client_profile_images/3/" + getNameImage,
                 edtDeskripsi.getText().toString().trim(),
-                "Dihatimu", idAkun)
+                edtLokasi.getText().toString().trim(), idAkun)
                 .enqueue(new Callback<ResponseErrorModel>() {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
@@ -197,8 +197,9 @@ public class PelaporActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        ivImagePealpor = findViewById(R.id.iv_image_pealpor);
+        ivImagePealpor = findViewById(R.id.iv_image_pelapor);
         edtDeskripsi = findViewById(R.id.edt_deskripsi);
+       edtLokasi = findViewById(R.id.edt_Lokasi);
         btnKirimPelapor = findViewById(R.id.btn_kirim_pelapor);
         tvKeluar = findViewById(R.id.tv_keluar);
         tvUsername = findViewById(R.id.tv_username);

@@ -64,6 +64,7 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
             public void onClick(View view) {
                 updateStatusValidator(pelaporModels.get(position).getIdPelapor(),idValidator,"Disetujui Validator");
 //                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, "id pelapor: " + pelaporModels.get(position).getIdPelapor() + "id validator: " + idValidator, Toast.LENGTH_SHORT).show();
             }
         });
