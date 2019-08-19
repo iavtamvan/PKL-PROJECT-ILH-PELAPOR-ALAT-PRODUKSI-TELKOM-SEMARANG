@@ -54,25 +54,37 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bgputih">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#F1F0F0"
             android:layout_margin="30dp"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="300dp"
+                android:layout_height="100dp"
                 android:id="@+id/iv_image_pelapor"
+                android:layout_marginTop="90dp"
                 android:layout_gravity="center"
                 android:src="@drawable/camera"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="Silahkan ambil gambar" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:lines="6"
                 android:hint="Deskripsi kerusakan"
+                android:layout_marginTop="40dp"
                 android:id="@+id/edt_deskripsi"/>
             <EditText
                 android:layout_width="match_parent"
@@ -81,8 +93,8 @@
                 android:hint="Lokasi"
                 android:id="@+id/edt_Lokasi"/>
             <Button
-                android:layout_width="50dp"
-                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/colorBtn"
                 android:layout_gravity="center"
                 android:text="Kirim"
