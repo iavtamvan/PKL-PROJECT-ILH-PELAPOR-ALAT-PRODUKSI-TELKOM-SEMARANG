@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_pelapor_nav"
+        app:headerLayout="@layout/nav_header_pelapor_nav2"
         app:menu="@menu/activity_pelapor_nav_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -4,14 +4,18 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-
         <item
-            android:id="@+id/histori_validator"
-            android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
+            android:id="@+id/nav_pelaporan"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Pelapor" />
+        <item
+            android:id="@+id/nav_histori"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Histori" />
         <item
-            android:id="@+id/logout"
+            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Logout" />
     </group>
+
 </menu>

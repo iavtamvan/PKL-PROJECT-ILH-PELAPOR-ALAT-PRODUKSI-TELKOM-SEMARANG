@@ -15,7 +15,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.ilh.alpro_telkom.helper.Config;
-import com.ilh.alpro_telkom.ui.pelapor.PelaporActivity;
+import com.ilh.alpro_telkom.ui.pelapor.PelaporNavActivity;
 import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
 import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
                 else {
                     if (rule.contains("user")){
                         finishAffinity();
-                        startActivity(new Intent(getApplicationContext(), PelaporActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PelaporNavActivity.class));
                     } else if (rule.contains("validator")){
                         finishAffinity();
                         startActivity(new Intent(getApplicationContext(), ValidatorNavActivity.class));

@@ -1,5 +1,6 @@
 package com.ilh.alpro_telkom.ui.pelapor;
 
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,14 +11,16 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
@@ -41,9 +44,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PelaporActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PelaporUploadFragment extends Fragment {
 
-    private static final String TAG = "ILH";
+
     private ImageView ivImagePealpor;
     private TextView tvKeluar;
     private TextView tvUsername;
@@ -56,19 +62,26 @@ public class PelaporActivity extends AppCompatActivity {
     private String idAkun;
 
     private ProgressDialog p;
+    private static final String TAG = "ILH";
+
+    public PelaporUploadFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelapor);
-        initView();
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_pelapor_upload, container, false);
+        initView(view);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idAkun = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
         tvUsername.setText(sharedPreferences.getString(Config.SHARED_PREF_USERNAME, ""));
         ivImagePealpor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ImageSelectActivity.class);
+                Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
                 intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
                 intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
                 intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
@@ -82,7 +95,7 @@ public class PelaporActivity extends AppCompatActivity {
                 if (edtDeskripsi.getText().toString().isEmpty()) {
                     edtDeskripsi.setError("Isi deskripsi");
                 } else {
-                    p = new ProgressDialog(PelaporActivity.this);
+                    p = new ProgressDialog(getActivity());
                     p.setMessage("Upload foto");
                     p.show();
                     uploadImage();
@@ -94,10 +107,12 @@ public class PelaporActivity extends AppCompatActivity {
         tvKeluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finishAffinity();
-                Config.logout(PelaporActivity.this);
+                getActivity().finishAffinity();
+                Config.logout(getActivity());
             }
         });
+
+        return view;
     }
 
     private void uploadImage() {
@@ -119,14 +134,14 @@ public class PelaporActivity extends AppCompatActivity {
             public void onResponse(Call<Result> call, Response<Result> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getResult().equals("success")) {
-                        Toast.makeText(getApplicationContext(), "uploaded successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "uploaded successfully", Toast.LENGTH_SHORT).show();
                         sendData();
 
                     } else {
 
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Upload Image Gagal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Upload Image Gagal", Toast.LENGTH_SHORT).show();
                 }
 
                 imagePath = "";
@@ -137,7 +152,7 @@ public class PelaporActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -152,19 +167,20 @@ public class PelaporActivity extends AppCompatActivity {
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()) {
                             p.dismiss();
-                            Toast.makeText(PelaporActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Sukses", Toast.LENGTH_SHORT).show();
 //                            edtDeskripsi.setText("http://devlop.can.web.id/uploads/client_profile_images/3/" + getNameImage);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
-                        Toast.makeText(PelaporActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
                         p.dismiss();
                     }
                 });
 
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -178,7 +194,7 @@ public class PelaporActivity extends AppCompatActivity {
             myDir.mkdirs();
 
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String fname = "wisba_" + timeStamp + ".jpg";
+            String fname = "alpro_" + timeStamp + ".jpg";
 
             File file = new File(myDir, fname);
             imagePath = String.valueOf(file);
@@ -196,12 +212,12 @@ public class PelaporActivity extends AppCompatActivity {
         }
     }
 
-    private void initView() {
-        ivImagePealpor = findViewById(R.id.iv_image_pelapor);
-        edtDeskripsi = findViewById(R.id.edt_deskripsi);
-       edtLokasi = findViewById(R.id.edt_Lokasi);
-        btnKirimPelapor = findViewById(R.id.btn_kirim_pelapor);
-        tvKeluar = findViewById(R.id.tv_keluar);
-        tvUsername = findViewById(R.id.tv_username);
+    private void initView(View view) {
+        ivImagePealpor = view.findViewById(R.id.iv_image_pelapor);
+        edtDeskripsi = view.findViewById(R.id.edt_deskripsi);
+        edtLokasi = view.findViewById(R.id.edt_Lokasi);
+        btnKirimPelapor = view.findViewById(R.id.btn_kirim_pelapor);
+        tvKeluar = view.findViewById(R.id.tv_keluar);
+        tvUsername = view.findViewById(R.id.tv_username);
     }
 }

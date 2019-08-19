@@ -20,6 +20,8 @@ import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
+import com.ilh.alpro_telkom.ui.pelapor.PelaporNavActivity;
+import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
 
 import java.util.ArrayList;
 
@@ -62,8 +64,8 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
         holder.btnYa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateStatusValidator(pelaporModels.get(position).getIdPelapor(),idValidator,"Disetujui Validator");
-//                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
+                updateStatusValidatorKeTeknisi(pelaporModels.get(position).getIdPelapor(),idValidator,"Disetujui Validator");
+                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, "id pelapor: " + pelaporModels.get(position).getIdPelapor() + "id validator: " + idValidator, Toast.LENGTH_SHORT).show();
             }
@@ -72,14 +74,13 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
         holder.btnTidak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateStatusValidator(pelaporModels.get(position).getIdPelapor(),idValidator, "Ditolak Validator");
-                Toast.makeText(context, "Tidak disetujui", Toast.LENGTH_SHORT).show();
+                updateStatusValidatorKePelapor(pelaporModels.get(position).getIdPelapor(),idValidator, "Ditolak Validator");
             }
         });
 
     }
 
-    private void updateStatusValidator(String idPelapor, String idValidator, String status) {
+    private void updateStatusValidatorKeTeknisi(String idPelapor, String idValidator, String status) {
         ApiService apiService = ApiConfigServer.getApiService();
         apiService.updateStatusValidator(idPelapor, idValidator, status)
                 .enqueue(new Callback<ResponseErrorModel>() {
@@ -87,7 +88,27 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
                             responseErrorModels = response.body();
-                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
+//                            getRegID(idAkun);
+                            ((ValidatorNavActivity)context).setState();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
+                        Toast.makeText(context, "updateValidator: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    private void updateStatusValidatorKePelapor(String idPelapor, String idValidator, String status) {
+        ApiService apiService = ApiConfigServer.getApiService();
+        apiService.updateStatusValidator(idPelapor, idValidator, status)
+                .enqueue(new Callback<ResponseErrorModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
+                        if (response.isSuccessful()){
+                            responseErrorModels = response.body();
+//                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
                             getRegID(idAkun);
                         }
                     }
@@ -107,9 +128,12 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
                             responseErrorModels = response.body();
-                            Toast.makeText(context, "Mengirim notifikasi ke Pelapor", Toast.LENGTH_SHORT).show();
-                            Config.pushNotif(context, "Ditolak oleh validator", "Ditolak karena bukan Alat Produksi PT. TELKOM INDONESIA.", "individual"
+                            Toast.makeText(context, "Ditolak, Mengirim notifikasi ke Pelapor", Toast.LENGTH_SHORT).show();
+                            Config.pushNotif(context, "Ditolak oleh validator",
+                                    "Ditolak karena bukan Alat Produksi PT. TELKOM INDONESIA.",
+                                    "individual"
                             ,responseErrorModels.getRegID());
+                            ((ValidatorNavActivity)context).setState();
                         }
                     }
 

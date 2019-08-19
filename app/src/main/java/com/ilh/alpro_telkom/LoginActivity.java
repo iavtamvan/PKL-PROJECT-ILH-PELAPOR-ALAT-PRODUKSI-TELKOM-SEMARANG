@@ -23,7 +23,7 @@ import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
-import com.ilh.alpro_telkom.ui.pelapor.PelaporActivity;
+import com.ilh.alpro_telkom.ui.pelapor.PelaporNavActivity;
 import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
 import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
@@ -47,8 +47,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private NotificationManager mManager;
-
     private String regId;
+    private String idUser;
+    private String regIDShared;
+
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initView();
         methodRequiresTwoPermission();
+        sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, MODE_PRIVATE);
         displayFirebaseRegId();
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -132,16 +137,25 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (responseErrorModel.getRule().contains("validator")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
+                        idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
+                        regIDShared = sharedPreferences.getString("regId", "");
+                        updateRegID(regIDShared, idUser);
                         finishAffinity();
                         startActivity(new Intent(getApplicationContext(), ValidatorNavActivity.class));
                     } else if (responseErrorModel.getRule().contains("teknisi")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
+                        idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
+                        regIDShared = sharedPreferences.getString("regId", "");
+                        updateRegID(regIDShared, idUser);
                         finishAffinity();
                         startActivity(new Intent(getApplicationContext(), TeknisiNavActivity.class));
                     } else if (responseErrorModel.getRule().contains("user")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
+                        idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
+                        regIDShared = sharedPreferences.getString("regId", "");
+                        updateRegID(regIDShared, idUser);
                         finishAffinity();
-                        startActivity(new Intent(getApplicationContext(), PelaporActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PelaporNavActivity.class));
                     }
                 }
             }
@@ -152,6 +166,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void updateRegID(String regId, String idUser) {
+        ApiService apiService = ApiConfigServer.getApiService();
+        apiService.updateRegID(regId, idUser)
+                .enqueue(new Callback<ResponseErrorModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
+                        if (response.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
 
     @AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
     private void methodRequiresTwoPermission() {

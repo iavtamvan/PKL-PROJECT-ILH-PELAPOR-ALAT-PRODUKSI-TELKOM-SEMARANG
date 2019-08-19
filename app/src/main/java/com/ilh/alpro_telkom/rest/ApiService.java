@@ -74,6 +74,12 @@ public interface ApiService {
             @Field("reg_id") String reg_id,
             @Field("rule") String rule);
 
+    @FormUrlEncoded
+    @POST("api_update_reg_id.php")
+    Call<ResponseErrorModel> updateRegID(
+            @Field("reg_id") String regID,
+            @Field("id_user") String idUser);
+
 
 
     @GET("firebase")

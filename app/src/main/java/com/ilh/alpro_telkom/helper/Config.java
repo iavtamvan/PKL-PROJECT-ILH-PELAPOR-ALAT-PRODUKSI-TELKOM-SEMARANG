@@ -62,8 +62,8 @@ public final class Config {
                         if (response.isSuccessful()){
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
-                                String tittle = jsonObject.optString("tittle");
-                                Toast.makeText(context, "" + tittle, Toast.LENGTH_SHORT).show();
+                                String tittesle = jsonObject.optString("tittle");
+//                                Toast.makeText(context, "" + tittesle, Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {
