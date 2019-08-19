@@ -41,6 +41,11 @@ public interface ApiService {
             @Query("change") String change,
             @Query("id_user") String idAKun
     );
+    @GET("api_get.php")
+    Call<ArrayList<PelaporModel>> getHistoriPelapor(
+            @Query("change") String change,
+            @Query("id_user_akun") String idAKun
+    );
 
     @FormUrlEncoded
     @POST("api_tambah_pelapor.php")
