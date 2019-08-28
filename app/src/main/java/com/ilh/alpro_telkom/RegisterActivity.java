@@ -32,9 +32,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtNamaLengkap;
     private EditText edtUsername;
     private EditText edtPassword;
-    private RadioButton rbPelapor;
-    private RadioButton rbValidator;
-    private RadioButton rbTeknisi;
+//    private RadioButton rbPelapor;
+//    private RadioButton rbValidator;
+//    private RadioButton rbTeknisi;
     private Button btnRegistrasi;
 
     private ResponseErrorModel responseErrorModel;
@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
         initView();
         displayFirebaseRegId();
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -114,13 +115,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void postData() {
         ApiService apiService = ApiConfigServer.getApiService();
-        apiService.register(edtNamaLengkap.getText().toString().trim(), edtUsername.getText().toString().trim(), edtPassword.getText().toString().trim(),regId, rule)
+        apiService.register(edtNamaLengkap.getText().toString().trim(), edtUsername.getText().toString().trim(), edtPassword.getText().toString().trim(),regId, "user")
                 .enqueue(new Callback<ResponseErrorModel>() {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
                             responseErrorModel = response.body();
-                            Toast.makeText(RegisterActivity.this, "" + responseErrorModel.getErrorMsg(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Registrasi Sukses", Toast.LENGTH_SHORT).show();
                             finishAffinity();
                             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         }
@@ -136,9 +137,9 @@ public class RegisterActivity extends AppCompatActivity {
         edtNamaLengkap = findViewById(R.id.edt_nama_lengkap);
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
-        rbPelapor = findViewById(R.id.rb_pelapor);
-        rbValidator = findViewById(R.id.rb_validator);
-        rbTeknisi = findViewById(R.id.rb_teknisi);
+//        rbPelapor = findViewById(R.id.rb_pelapor);
+//        rbValidator = findViewById(R.id.rb_validator);
+//        rbTeknisi = findViewById(R.id.rb_teknisi);
         btnRegistrasi = findViewById(R.id.btn_registrasi);
     }
 }

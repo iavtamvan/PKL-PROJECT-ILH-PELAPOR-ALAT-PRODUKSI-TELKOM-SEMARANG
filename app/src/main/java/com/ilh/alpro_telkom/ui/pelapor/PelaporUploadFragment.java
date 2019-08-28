@@ -104,13 +104,13 @@ public class PelaporUploadFragment extends Fragment {
             }
         });
 
-        tvKeluar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().finishAffinity();
-                Config.logout(getActivity());
-            }
-        });
+//        tvKeluar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().finishAffinity();
+//                Config.logout(getActivity());
+//            }
+//        });
 
         return view;
     }
@@ -217,7 +217,7 @@ public class PelaporUploadFragment extends Fragment {
         edtDeskripsi = view.findViewById(R.id.edt_deskripsi);
         edtLokasi = view.findViewById(R.id.edt_Lokasi);
         btnKirimPelapor = view.findViewById(R.id.btn_kirim_pelapor);
-        tvKeluar = view.findViewById(R.id.tv_keluar);
+//        tvKeluar = view.findViewById(R.id.tv_keluar);
         tvUsername = view.findViewById(R.id.tv_username);
     }
 }

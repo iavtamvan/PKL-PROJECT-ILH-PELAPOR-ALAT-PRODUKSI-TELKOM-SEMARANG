@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
+import com.ilh.alpro_telkom.ui.validator.DataPelaporFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -54,6 +55,11 @@ public class TeknisiNavActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PekerjaanFragment()).commit();
+        getSupportActionBar().setTitle("Pekerjan ");
+    }
+    public void setState(){
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PekerjaanFragment()).commit();
         getSupportActionBar().setTitle("Pekerjan ");

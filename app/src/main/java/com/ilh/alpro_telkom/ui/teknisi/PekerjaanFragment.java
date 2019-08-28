@@ -37,7 +37,7 @@ public class PekerjaanFragment extends Fragment {
 
     public PekerjaanFragment() {
         // Required empty public constructor
-        getData();
+
     }
 
 

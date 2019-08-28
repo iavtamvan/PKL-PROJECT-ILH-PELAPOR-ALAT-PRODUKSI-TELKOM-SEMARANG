@@ -20,6 +20,7 @@ import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
+import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
 
 import java.util.ArrayList;
 
@@ -79,6 +80,7 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi,"Sedang Dalam Perbaikan");
+                ((TeknisiNavActivity)context).setState();
                 Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
             }
         });
@@ -87,6 +89,7 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi, "Sudah Diselesaikan");
+                ((TeknisiNavActivity)context).setState();
                 Toast.makeText(context, "Sudah Diselesaikan", Toast.LENGTH_SHORT).show();
             }
         });

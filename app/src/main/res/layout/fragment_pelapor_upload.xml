@@ -39,16 +39,7 @@
             android:layout_gravity="right"
             android:gravity="right">
 
-            <TextView
-                android:id="@+id/tv_keluar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bree_serif"
-                android:gravity="center|right"
-                android:text="Keluar"
-                android:textColor="@android:color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -71,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:id="@+id/iv_image_pelapor"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:src="@drawable/camera"/>
 
@@ -79,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="casual"
                 android:gravity="center"
                 android:text="Silahkan ambil gambar" />
@@ -88,7 +80,7 @@
                 android:layout_height="50dp"
                 android:lines="6"
                 android:hint="Deskripsi kerusakan"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/edt_deskripsi"/>
             <EditText
                 android:layout_width="match_parent"
@@ -103,7 +95,7 @@
                 android:layout_gravity="center|bottom"
                 android:text="Kirim"
                 android:id="@+id/btn_kirim_pelapor"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@android:color/white"
                 android:textSize="10dp"/>
 
