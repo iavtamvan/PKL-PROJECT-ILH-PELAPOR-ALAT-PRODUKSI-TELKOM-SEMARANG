@@ -51,29 +51,7 @@ public class PekerjaanFragment extends Fragment {
         pekerjaanPresnter.getData(getActivity(), rv);
         return view;
     }
-
-    public void getData() {
-        ApiService apiService = ApiConfigServer.getApiService();
-        apiService.getAllDataDisetujui("disetujuiValidator").enqueue(new Callback<ArrayList<PelaporModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<PelaporModel>> call, Response<ArrayList<PelaporModel>> response) {
-                if (response.isSuccessful()){
-                    pelaporModels = response.body();
-                    rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    teknisiAdapter = new TeknisiAdapter(getActivity(), pelaporModels);
-                    teknisiAdapter.notifyDataSetChanged();
-                    rv.setAdapter(teknisiAdapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<PelaporModel>> call, Throwable t) {
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
+    
     private void initView(View view) {
         rv = view.findViewById(R.id.rv);
     }

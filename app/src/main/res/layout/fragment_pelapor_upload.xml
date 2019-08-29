@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:id="@+id/tv_silahkan_ambil"
                 android:layout_marginBottom="30dp"
                 android:fontFamily="casual"
                 android:gravity="center"

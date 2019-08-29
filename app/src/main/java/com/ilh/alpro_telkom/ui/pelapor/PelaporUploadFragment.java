@@ -63,6 +63,7 @@ public class PelaporUploadFragment extends Fragment {
 
     private ProgressDialog p;
     private static final String TAG = "ILH";
+    private TextView tvSilahkanAmbil;
 
     public PelaporUploadFragment() {
         // Required empty public constructor
@@ -94,6 +95,8 @@ public class PelaporUploadFragment extends Fragment {
             public void onClick(View view) {
                 if (edtDeskripsi.getText().toString().isEmpty()) {
                     edtDeskripsi.setError("Isi deskripsi");
+                } else if (edtLokasi.getText().toString().isEmpty()) {
+                    edtLokasi.setError("Isi Lokasi");
                 } else {
                     p = new ProgressDialog(getActivity());
                     p.setMessage("Upload foto");
@@ -137,6 +140,7 @@ public class PelaporUploadFragment extends Fragment {
                         Toast.makeText(getActivity(), "uploaded successfully", Toast.LENGTH_SHORT).show();
                         sendData();
 
+
                     } else {
 
                     }
@@ -168,6 +172,7 @@ public class PelaporUploadFragment extends Fragment {
                         if (response.isSuccessful()) {
                             p.dismiss();
                             Toast.makeText(getActivity(), "Sukses", Toast.LENGTH_SHORT).show();
+                            ((PelaporNavActivity) getActivity()).setup();
 //                            edtDeskripsi.setText("http://devlop.can.web.id/uploads/client_profile_images/3/" + getNameImage);
                         }
                     }
@@ -209,6 +214,7 @@ public class PelaporUploadFragment extends Fragment {
             }
 //            edtNamaKeluhan.setText(String.valueOf("" + file));
             ivImagePealpor.setImageBitmap(selectedImage);
+            tvSilahkanAmbil.setVisibility(View.GONE);
         }
     }
 
@@ -219,5 +225,6 @@ public class PelaporUploadFragment extends Fragment {
         btnKirimPelapor = view.findViewById(R.id.btn_kirim_pelapor);
 //        tvKeluar = view.findViewById(R.id.tv_keluar);
         tvUsername = view.findViewById(R.id.tv_username);
+        tvSilahkanAmbil = view.findViewById(R.id.tv_silahkan_ambil);
     }
 }
