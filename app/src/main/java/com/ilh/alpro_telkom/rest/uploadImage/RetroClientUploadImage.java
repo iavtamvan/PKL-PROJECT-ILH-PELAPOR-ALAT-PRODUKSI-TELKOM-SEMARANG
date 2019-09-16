@@ -8,7 +8,7 @@ public class RetroClientUploadImage {
 
 
 
-    private static final String ROOT_URL = "http://devlop.can.web.id/uploads/client_profile_images/3/";
+    private static final String ROOT_URL = "http://indiku.id/image/upload_client/";
 
     public RetroClientUploadImage(){
     }

@@ -80,7 +80,6 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi,"Sedang Dalam Perbaikan");
-                ((TeknisiNavActivity)context).setState();
                 Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,7 +88,6 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi, "Sudah Diselesaikan");
-                ((TeknisiNavActivity)context).setState();
                 Toast.makeText(context, "Sudah Diselesaikan", Toast.LENGTH_SHORT).show();
             }
         });
@@ -107,8 +105,10 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
 //                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
 
                             if (status.contains("Sedang Dalam Perbaikan")){
+                                ((TeknisiNavActivity)context).setState();
                                 getRegID(idValidator, "Mulai pengerjaan oleh teknisi", "Segera di tindaklanjuti oleh Teknisi.");
                             } else if (status.contains("Sudah Diselesaikan")){
+                                ((TeknisiNavActivity)context).setState();
                                 getRegID(idAkun,"Sudah dilakukan pengerjaan", "Selesai diperbaiki.");
                             }
 
