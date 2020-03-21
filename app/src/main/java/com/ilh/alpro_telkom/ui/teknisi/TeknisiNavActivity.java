@@ -92,9 +92,10 @@ public class TeknisiNavActivity extends AppCompatActivity
                                 String total_fedback_teknisi = jsonObject.optString("total_fedback_teknisi");
                                 String total_pelapor = jsonObject.optString("total_pelapor");
 
-                                if (total_pointRating.contains("")) {
+                                if (total_pointRating.equalsIgnoreCase("")) {
                                     ratingBar.setRating(0);
-                                    tvPenilaianDari.setText("Penilaian 0" + " dari 0" + " Seluruh Pelapor");
+                                    tvPenilaianDari.setText("Penilaian 0" + " dari 0" + " Seluruh Pelapor" + " KSOONG");
+                                    Toast.makeText(TeknisiNavActivity.this, "Kosong", Toast.LENGTH_SHORT).show();
                                 } else {
                                     ratingBar.setRating(Float.valueOf(total_pointRating));
                                     tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor");
