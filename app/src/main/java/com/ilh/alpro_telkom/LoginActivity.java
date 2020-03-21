@@ -91,34 +91,11 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginRule();
-//                ApiService apiService = ApiConfigServer.getApiService();
-//                apiService.getDataFeedbackTeknisi("getFeedbackTeknisi", "3")
-//                        .enqueue(new Callback<ResponseBody>() {
-//                            @Override
-//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                                if (response.isSuccessful()){
-//                                    try {
-//                                        JSONObject jsonObject  = new JSONObject(response.body().string());
-//                                        String total_point = jsonObject.optString("total_point");
-//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
-//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
-//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
-//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
-//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
-//                                    } catch (JSONException e) {
-//                                        e.printStackTrace();
-//                                    } catch (IOException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                                Toast.makeText(LoginActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+                if (edtUsername.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Periksa Akun Anda", Toast.LENGTH_SHORT).show();
+                } else {
+                    loginRule();
+                }
             }
         });
         tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -167,8 +144,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                 if (response.isSuccessful()) {
                     responseErrorModel = response.body();
-                    Toast.makeText(LoginActivity.this, "" + responseErrorModel.getRule(), Toast.LENGTH_SHORT).show();
-
                     if (responseErrorModel.getRule().contains("validator")) {
                         Config.sharedPref(LoginActivity.this, responseErrorModel.getId(), responseErrorModel.getUsername(), responseErrorModel.getRule());
                         idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
@@ -191,6 +166,12 @@ public class LoginActivity extends AppCompatActivity {
                         finishAffinity();
                         startActivity(new Intent(getApplicationContext(), PelaporNavActivity.class));
                     }
+                    else {
+                        Toast.makeText(LoginActivity.this, "Periksa Akun Anda", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                 else {
+                    Toast.makeText(LoginActivity.this, "Periksa Akun Anda", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -207,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                 .enqueue(new Callback<ResponseErrorModel>() {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                         }
                     }
