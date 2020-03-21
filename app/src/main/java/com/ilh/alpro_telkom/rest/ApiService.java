@@ -47,6 +47,12 @@ public interface ApiService {
             @Query("id_user_akun") String idAKun
     );
 
+    @GET("api_get.php")
+    Call<ArrayList<PelaporModel>> getDataFeedbackTeknisi(
+            @Query("change") String change,
+            @Query("id_user_akun") String idAKun
+    );
+
     @FormUrlEncoded
     @POST("api_tambah_pelapor.php")
     Call<ResponseErrorModel> postDataPelapor(
@@ -84,6 +90,15 @@ public interface ApiService {
     Call<ResponseErrorModel> updateRegID(
             @Field("reg_id") String regID,
             @Field("id_user") String idUser);
+
+    @FormUrlEncoded
+    @POST("api_feedback.php")
+    Call<ResponseErrorModel> postFeedback(
+            @Field("id_user") String idUser,
+            @Field("id_teknisi") String id_teknisi,
+            @Field("id_pelapor") String id_pelapor,
+            @Field("point_feedback") double  point_feedback
+            );
 
 
 

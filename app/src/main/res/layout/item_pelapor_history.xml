@@ -28,7 +28,7 @@
                     android:layout_marginRight="4dp"
                     android:scaleType="fitXY"
                     android:src="@color/colorPrimary"
-                    android:id="@+id/iv_item_validator"/>
+                    android:id="@+id/iv_item_pelapor"/>
 
                 <ImageView
                     android:layout_width="60dp"
@@ -36,6 +36,17 @@
                     android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/lg"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feedback"
+                    android:background="@color/colorBtn"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/btn_feedback"
+                    android:layout_gravity="right|bottom"/>
 
             </FrameLayout>
             <LinearLayout

@@ -26,6 +26,7 @@ public final class Config {
     public static final String SHARED_PREF_ID = "ALPRO_ID_USER";
     public static final String SHARED_PREF_USERNAME = "ALPRO_USERNAME";
     public static final String SHARED_PREF_RULE = "ALPRO_RULE";
+    public static final String SHARED_PREF_FEEDBACK = "ALPRO_FEEDBACK";
     public static final String SHARED_PREF_REGID_FIREBASE = "ALPRO_REGID_FIREBASE";
     public static final String SHARED_PREF_ERROR_MSG = "ALPRO_ERROR_MSG";
 

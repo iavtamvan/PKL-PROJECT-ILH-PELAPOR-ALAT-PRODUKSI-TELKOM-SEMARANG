@@ -2,8 +2,10 @@ package com.ilh.alpro_telkom.ui.pelapor;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -60,6 +62,7 @@ public class PelaporUploadFragment extends Fragment {
     private String imagePath;
     private String getNameImage;
     private String idAkun;
+    private String feedbackAllert;
 
     private ProgressDialog p;
     private static final String TAG = "ILH";
@@ -78,6 +81,15 @@ public class PelaporUploadFragment extends Fragment {
         initView(view);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idAkun = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
+
+        feedbackAllert = sharedPreferences.getString(Config.SHARED_PREF_FEEDBACK, "");
+        if (feedbackAllert.equalsIgnoreCase("Pending")) {
+            showDialog();
+        }
+        else {
+            Toast.makeText(getActivity(), "Aman", Toast.LENGTH_SHORT).show();
+//            Gakpapa
+        }
         tvUsername.setText(sharedPreferences.getString(Config.SHARED_PREF_USERNAME, ""));
         ivImagePealpor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +128,38 @@ public class PelaporUploadFragment extends Fragment {
 //        });
 
         return view;
+    }
+    private void showDialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                getActivity());
+
+        // set title dialog
+        alertDialogBuilder.setTitle("Anda belum melakukan feedback kepada teknisi.");
+
+        // set pesan dari dialog
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk memberikan feedback!")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // jika tombol diklik, maka akan menutup activity ini
+                        Toast.makeText(getActivity(), "Berhasil Sek", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // jika tombol ini diklik, akan menutup dialog
+                        // dan tidak terjadi apa2
+                        dialog.cancel();
+                    }
+                });
+
+        // membuat alert dialog dari builder
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // menampilkan alert dialog
+        alertDialog.show();
     }
 
     private void uploadImage() {
@@ -163,7 +207,7 @@ public class PelaporUploadFragment extends Fragment {
 
     private void sendData() {
         ApiService apiService = ApiConfigServer.getApiService();
-        apiService.postDataPelapor("http://devlop.can.web.id/uploads/client_profile_images/3/" + getNameImage,
+        apiService.postDataPelapor("http://sig.upgris.ac.id/api_iav/image/" + getNameImage,
                 edtDeskripsi.getText().toString().trim(),
                 edtLokasi.getText().toString().trim(), idAkun)
                 .enqueue(new Callback<ResponseErrorModel>() {
@@ -173,6 +217,10 @@ public class PelaporUploadFragment extends Fragment {
                             p.dismiss();
                             Toast.makeText(getActivity(), "Sukses", Toast.LENGTH_SHORT).show();
                             ((PelaporNavActivity) getActivity()).setup();
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(Config.SHARED_PREF_FEEDBACK, "Pending Feedback");
+                            editor.apply();
 //                            edtDeskripsi.setText("http://devlop.can.web.id/uploads/client_profile_images/3/" + getNameImage);
                         }
                     }

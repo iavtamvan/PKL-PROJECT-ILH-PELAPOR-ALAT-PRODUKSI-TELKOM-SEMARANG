@@ -26,6 +26,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 public class TeknisiNavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +54,10 @@ public class TeknisiNavActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headView = navigationView.getHeaderView(0);
+//        TextView tvCOba = headView.findViewById(R.id.tv_coba);
+
 
 
         fragmentManager = getSupportFragmentManager();

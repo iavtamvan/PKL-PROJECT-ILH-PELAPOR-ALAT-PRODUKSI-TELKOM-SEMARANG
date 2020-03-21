@@ -34,6 +34,17 @@ public class PelaporModel{
 	@SerializedName("status")
 	private String status;
 
+	@SerializedName("status_feedback")
+	private String status_feedback;
+
+	public String getStatus_feedback() {
+		return status_feedback;
+	}
+
+	public void setStatus_feedback(String status_feedback) {
+		this.status_feedback = status_feedback;
+	}
+
 	public void setIdUserAkun(String idUserAkun){
 		this.idUserAkun = idUserAkun;
 	}

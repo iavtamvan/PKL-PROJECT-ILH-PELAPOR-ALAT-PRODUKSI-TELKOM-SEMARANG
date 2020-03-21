@@ -175,15 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, "Berhasil UpdateReg ID" , Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
