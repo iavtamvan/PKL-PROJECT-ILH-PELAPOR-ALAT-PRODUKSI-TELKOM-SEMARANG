@@ -37,58 +37,62 @@
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/lg"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Feedback"
-                    android:background="@color/colorBtn"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/btn_feedback"
-                    android:layout_gravity="right|bottom"/>
-
             </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/tv_desk_validator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cherry_cream_soda" />
+
+                    <TextView
+                        android:id="@+id/tv_desk_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/bree_serif" />
+
+                    <TextView
+                        android:id="@+id/tv_desk_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/bree_serif" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feedback"
+                        android:background="@color/colorBtn"
+                        android:layout_margin="4dp"
+                        android:textColor="@android:color/white"
+                        android:id="@+id/btn_feedback"/>
 
                 </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/tv_desk_validator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/cherry_cream_soda" />
-
-                <TextView
-                    android:id="@+id/tv_desk_alamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/bree_serif" />
-
-                <TextView
-                    android:id="@+id/tv_desk_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/bree_serif" />
             </LinearLayout>
         </LinearLayout>
 
