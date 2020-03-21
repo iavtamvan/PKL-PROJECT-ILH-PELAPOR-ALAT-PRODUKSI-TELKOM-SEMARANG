@@ -28,6 +28,12 @@ import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
 import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
@@ -86,6 +92,33 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loginRule();
+//                ApiService apiService = ApiConfigServer.getApiService();
+//                apiService.getDataFeedbackTeknisi("getFeedbackTeknisi", "3")
+//                        .enqueue(new Callback<ResponseBody>() {
+//                            @Override
+//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                                if (response.isSuccessful()){
+//                                    try {
+//                                        JSONObject jsonObject  = new JSONObject(response.body().string());
+//                                        String total_point = jsonObject.optString("total_point");
+//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(LoginActivity.this, "" + total_point, Toast.LENGTH_SHORT).show();
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    } catch (IOException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                                Toast.makeText(LoginActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
             }
         });
         tvRegister.setOnClickListener(new View.OnClickListener() {

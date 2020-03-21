@@ -1,5 +1,7 @@
 package com.ilh.alpro_telkom.ui.teknisi;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,6 +17,8 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
+import com.ilh.alpro_telkom.rest.ApiConfigServer;
+import com.ilh.alpro_telkom.rest.ApiService;
 import com.ilh.alpro_telkom.ui.validator.DataPelaporFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,13 +30,29 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.nio.channels.FileLock;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TeknisiNavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
     private FrameLayout fmViewPagerNav;
     private ViewPager viewpager;
+
+    private String idUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,17 +74,53 @@ public class TeknisiNavActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, MODE_PRIVATE);
+        idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
         View headView = navigationView.getHeaderView(0);
-//        TextView tvCOba = headView.findViewById(R.id.tv_coba);
+        final TextView tvPenilaianDari = headView.findViewById(R.id.tv_penilaian_dari);
+        final RatingBar ratingBar = headView.findViewById(R.id.rb_teknisi);
 
+        ApiService apiService = ApiConfigServer.getApiService();
+        apiService.getDataFeedbackTeknisi("getFeedbackTeknisi", idUser)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.body().string());
+                                String total_pointRating = jsonObject.optString("total_point");
+                                String total_fedback_teknisi = jsonObject.optString("total_fedback_teknisi");
+                                String total_pelapor = jsonObject.optString("total_pelapor");
 
+                                if (total_pointRating.contains("")) {
+                                    ratingBar.setRating(0);
+                                    tvPenilaianDari.setText("Penilaian 0" + " dari 0" + " Seluruh Pelapor");
+                                } else {
+                                    ratingBar.setRating(Float.valueOf(total_pointRating));
+                                    tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor");
+
+                                    // Disini tempatnya algoritma Fuzzy Logic
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(TeknisiNavActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PekerjaanFragment()).commit();
         getSupportActionBar().setTitle("Pekerjan ");
     }
-    public void setState(){
+
+    public void setState() {
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PekerjaanFragment()).commit();
         getSupportActionBar().setTitle("Pekerjan ");

@@ -8,7 +8,7 @@ public class RetroClientUploadImage {
 
 
 
-    private static final String ROOT_URL = "http://sig.upgris.ac.id/api_iav/image/upload.php";
+    private static final String ROOT_URL = "http://sandec.org/iav/image/";
 
     public RetroClientUploadImage(){
     }

@@ -107,7 +107,7 @@ public class PelaporHistoryAdapter extends RecyclerView.Adapter<PelaporHistoryAd
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ivItemValidator = itemView.findViewById(R.id.iv_item_validator);
+            ivItemValidator = itemView.findViewById(R.id.iv_item_pelapor);
             tvDeskValidator = itemView.findViewById(R.id.tv_desk_validator);
             tvAlamatValidator = itemView.findViewById(R.id.tv_desk_alamat);
             tvAlamatStatus = itemView.findViewById(R.id.tv_desk_status);

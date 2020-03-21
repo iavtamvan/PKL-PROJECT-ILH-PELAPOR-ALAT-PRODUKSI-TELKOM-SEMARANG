@@ -1,5 +1,6 @@
 package com.ilh.alpro_telkom.rest;
 
+import com.ilh.alpro_telkom.model.FeedbackModel;
 import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 
@@ -48,9 +49,9 @@ public interface ApiService {
     );
 
     @GET("api_get.php")
-    Call<ArrayList<PelaporModel>> getDataFeedbackTeknisi(
+    Call<ResponseBody> getDataFeedbackTeknisi(
             @Query("change") String change,
-            @Query("id_user_akun") String idAKun
+            @Query("id_teknisi") String idAKun
     );
 
     @FormUrlEncoded
