@@ -245,13 +245,17 @@ public class FeedbackActivity extends AppCompatActivity {
 
     // TODO 3 menghitung variable yang sebelumnya sudah ditentukan dengan menggunakan grafik
     private void fuzzyLogic() {
+
+        // Rumus 1
         totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
 
-        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
+        // Rumus 2
+        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100); // 100 adalah persen
+        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100); // 100 adalah persen
 
-        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.22 / 100);
-        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.22 / 100);
+        // Rumus 3
+        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.22 / 100); // 0.2 adalah range per bobot || 100 adalah persen
+        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.22 / 100); // 0.2 adalah range per bobot || 100 adalah persen
 
 //                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
 //                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
