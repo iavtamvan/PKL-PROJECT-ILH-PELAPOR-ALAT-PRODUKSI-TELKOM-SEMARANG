@@ -83,7 +83,7 @@ public class PelaporUploadFragment extends Fragment {
         idAkun = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
 
         feedbackAllert = sharedPreferences.getString(Config.SHARED_PREF_FEEDBACK, "");
-        if (feedbackAllert.equalsIgnoreCase("Pending")) {
+        if (feedbackAllert.contains("Pending Feedback")) {
             showDialog();
         }
         else {
@@ -144,14 +144,7 @@ public class PelaporUploadFragment extends Fragment {
                 .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // jika tombol diklik, maka akan menutup activity ini
-                        Toast.makeText(getActivity(), "Berhasil Sek", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // jika tombol ini diklik, akan menutup dialog
-                        // dan tidak terjadi apa2
-                        dialog.cancel();
+                        ((PelaporNavActivity) getActivity()).setupFeedback();
                     }
                 });
 
@@ -200,14 +193,16 @@ public class PelaporUploadFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Pilih Gambar Lagi " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                ivImagePealpor.setImageResource(R.drawable.camera);
+                p.dismiss();
             }
         });
     }
 
     private void sendData() {
         ApiService apiService = ApiConfigServer.getApiService();
-        apiService.postDataPelapor("http://sig.upgris.ac.id/api_iav/image/" + getNameImage,
+        apiService.postDataPelapor("http://sandec.org/iav/image/" + getNameImage,
                 edtDeskripsi.getText().toString().trim(),
                 edtLokasi.getText().toString().trim(), idAkun)
                 .enqueue(new Callback<ResponseErrorModel>() {

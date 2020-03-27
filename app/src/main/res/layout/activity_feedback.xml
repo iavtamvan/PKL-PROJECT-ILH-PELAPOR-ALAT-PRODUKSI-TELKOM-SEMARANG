@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Umpan Balik Untuk Teknisi"
+            android:text="Feedback Untuk Teknisi"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -26,7 +26,37 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Nama Teknisi"
+            android:text="Predikat"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_dec_lama"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Dec Lama "
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_dec_kes"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Dec Kes"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Total"
             android:textColor="@android:color/black"
             android:textSize="18dp"
             android:textStyle="bold" />

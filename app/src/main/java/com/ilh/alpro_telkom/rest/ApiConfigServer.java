@@ -7,8 +7,8 @@ public class ApiConfigServer {
 
     public static ApiService getApiService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sig.upgris.ac.id/api_iav/alpro/")
-//                .baseUrl("http://192.168.43.76/~mac/alpro/")
+//                .baseUrl("http://sig.upgris.ac.id/api_iav/alpro/")
+                .baseUrl("http://192.168.43.76/~mac/alpro/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

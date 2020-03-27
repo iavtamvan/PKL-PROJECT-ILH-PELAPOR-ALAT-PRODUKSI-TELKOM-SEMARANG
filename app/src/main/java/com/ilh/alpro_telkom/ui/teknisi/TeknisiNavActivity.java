@@ -78,7 +78,29 @@ public class TeknisiNavActivity extends AppCompatActivity
         idUser = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
         View headView = navigationView.getHeaderView(0);
         final TextView tvPenilaianDari = headView.findViewById(R.id.tv_penilaian_dari);
+        final TextView tvPredikat = headView.findViewById(R.id.tv_predikat);
         final RatingBar ratingBar = headView.findViewById(R.id.rb_teknisi);
+
+
+        //                    totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
+//
+//                    proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot/totalFeedback * 100);
+//                    proFuzzyKesesuaian = (float) (kesesuaianBobot/totalFeedback * 100);
+//
+//                    grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
+//                    grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
+//
+////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
+////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
+//
+//                    decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
+//                    decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
+//
+//                    totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
+//
+//                    tvNamaTeknisi.setText("Sangat Bagus " + totalFeedbackFuzzy + " || " + decimalLamaPengerjaan + " || " + decimalKesesuaianPengerjaan);
+
+
 
         ApiService apiService = ApiConfigServer.getApiService();
         apiService.getDataFeedbackTeknisi("getFeedbackTeknisi", idUser)
@@ -98,9 +120,33 @@ public class TeknisiNavActivity extends AppCompatActivity
                                     Toast.makeText(TeknisiNavActivity.this, "Kosong", Toast.LENGTH_SHORT).show();
                                 } else {
                                     ratingBar.setRating(Float.valueOf(total_pointRating));
-                                    tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor");
+                                    tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor " + "Poin anda " + total_pointRating);
 
                                     // Disini tempatnya algoritma Fuzzy Logic
+                                    double ratingToDouble = Double.parseDouble(total_pointRating);
+                                    int totalPelaporToInt = Integer.parseInt(total_fedback_teknisi);
+
+                                    if (ratingToDouble <= 0.9 || totalPelaporToInt <= 10) {
+                                        tvPredikat.setText("Buruk");
+                                    }
+
+                                    else if (ratingToDouble >= 1 && ratingToDouble <=1.9 || totalPelaporToInt <= 20 ) {
+                                        tvPredikat.setText("Buruk");
+                                    }
+
+                                    else if (ratingToDouble >2 && ratingToDouble <= 3.9 || totalPelaporToInt > 21 && totalPelaporToInt <= 30) {
+                                        tvPredikat.setText("Bagus");
+                                    }
+
+                                    else if (ratingToDouble >4 && ratingToDouble <= 4.9 || totalPelaporToInt > 31 && totalPelaporToInt < 50){
+                                        tvPredikat.setText("Sangat Bagus");
+                                    }
+
+                                    else {
+                                        tvPredikat.setText("Sangat Bagus");
+                                    }
+
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

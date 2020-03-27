@@ -65,6 +65,11 @@ public class PelaporNavActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PelaporUploadFragment()).commit();
         getSupportActionBar().setTitle("Pekerjan ");
     }
+    public void setupFeedback(){
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new HistoriPelaporFragment()).commit();
+        getSupportActionBar().setTitle("Histori");
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

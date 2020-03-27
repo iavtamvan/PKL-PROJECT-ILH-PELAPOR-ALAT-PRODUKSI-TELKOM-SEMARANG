@@ -98,7 +98,10 @@ public interface ApiService {
             @Field("id_user") String idUser,
             @Field("id_teknisi") String id_teknisi,
             @Field("id_pelapor") String id_pelapor,
-            @Field("point_feedback") double  point_feedback
+            @Field("point_feedback") String  point_feedback,
+            @Field("lama_pengerjaan") String  lama_pengerjaan,
+            @Field("kesesuaian_pekerjaan") String  kesesuaian_pekerjaan,
+            @Field("result") String  result
             );
 
 
