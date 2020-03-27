@@ -57,6 +57,7 @@ public class FeedbackActivity extends AppCompatActivity {
         id_pelapor = getIntent().getStringExtra("ID_PELAPOR");
 //        Toast.makeText(this, "id User || " + id_user + "id teknisi || "+ id_teknisi + "id pelapor || " + id_pelapor, Toast.LENGTH_SHORT).show();
 
+        // TODO 1 memberikan Bobot pada variabel yang telah di tetapkan
         btnFdb2jam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +109,7 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
 
+        // TODO 2 menentukan Aturan/rule pada Algoritma fuzzy logic
         btnKirimFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,6 +243,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
     }
 
+    // TODO 3 menghitung variable yang sebelumnya sudah ditentukan dengan menggunakan grafik
     private void fuzzyLogic() {
         totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
 
@@ -253,6 +256,7 @@ public class FeedbackActivity extends AppCompatActivity {
 //                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
 //                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
 
+        // TODO 4 hasil dar perhitungan variabel menggunakan pendekatan grafik
         decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
         decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
 
@@ -260,6 +264,7 @@ public class FeedbackActivity extends AppCompatActivity {
         tvDecKes.setText(String.valueOf(decimalKesesuaianPengerjaan));
         tvDecLama.setText(String.valueOf(decimalLamaPengerjaan));
 
+        // TODO 5 OUTPUT dari fuzzy Logic.
         totalFeedbackFuzzy = Float.parseFloat(new DecimalFormat("#.##").format(decimalLamaPengerjaan / decimalKesesuaianPengerjaan));
         tvTotal.setText(String.valueOf(totalFeedbackFuzzy));
 

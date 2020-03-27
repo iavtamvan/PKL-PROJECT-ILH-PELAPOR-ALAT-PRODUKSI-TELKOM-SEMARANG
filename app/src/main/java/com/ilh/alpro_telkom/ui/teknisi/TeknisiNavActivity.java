@@ -122,7 +122,7 @@ public class TeknisiNavActivity extends AppCompatActivity
                                     ratingBar.setRating(Float.valueOf(total_pointRating));
                                     tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor " + "Poin anda " + total_pointRating);
 
-                                    // Disini tempatnya algoritma Fuzzy Logic
+                                    // TODO 6 Disini tempatnya algoritma Fuzzy Logic rule 2
                                     double ratingToDouble = Double.parseDouble(total_pointRating);
                                     int totalPelaporToInt = Integer.parseInt(total_fedback_teknisi);
 
