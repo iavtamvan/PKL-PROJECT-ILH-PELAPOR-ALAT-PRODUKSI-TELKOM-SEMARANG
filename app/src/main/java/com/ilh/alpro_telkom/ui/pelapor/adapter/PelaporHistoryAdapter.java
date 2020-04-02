@@ -66,7 +66,7 @@ public class PelaporHistoryAdapter extends RecyclerView.Adapter<PelaporHistoryAd
 //                        holder.btn_feedback.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View view) {
-                                Toast.makeText(context, "Pelaporan Selesai, coba lagi nanti", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Pelaporan Belum Selesai, coba lagi nanti", Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
                     } else {

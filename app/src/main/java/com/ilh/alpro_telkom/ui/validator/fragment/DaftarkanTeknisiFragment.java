@@ -60,7 +60,7 @@ public class DaftarkanTeknisiFragment extends Fragment {
 
     private void daftarkanTeknisi() {
         ApiService apiService = ApiConfigServer.getApiService();
-        apiService.register(edtNamaLengkap.getText().toString().trim(), edtUsername.getText().toString().trim(), edtPassword.getText().toString().trim(), "", "user")
+        apiService.register(edtNamaLengkap.getText().toString().trim(), edtUsername.getText().toString().trim(), edtPassword.getText().toString().trim(), "", "teknisi")
                 .enqueue(new Callback<ResponseErrorModel>() {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {

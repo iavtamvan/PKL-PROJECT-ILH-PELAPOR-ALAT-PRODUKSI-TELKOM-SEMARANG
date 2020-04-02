@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
+import com.ilh.alpro_telkom.ui.validator.fragment.DaftarkanTeknisiFragment;
 import com.ilh.alpro_telkom.ui.validator.fragment.DataPelaporFragment;
 import com.ilh.alpro_telkom.ui.validator.fragment.HistoryValidatorFragment;
 
@@ -111,6 +112,10 @@ public class ValidatorNavActivity extends AppCompatActivity
             fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new HistoryValidatorFragment()).commit();
             getSupportActionBar().setTitle("Data Pelaporan");
+        } else if (id == R.id.daftarkan_teknisi) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new DaftarkanTeknisiFragment()).commit();
+            getSupportActionBar().setTitle("Daftarkan Teknisi");
         } else if (id == R.id.logout) {
             Config.logout(ValidatorNavActivity.this);
         }

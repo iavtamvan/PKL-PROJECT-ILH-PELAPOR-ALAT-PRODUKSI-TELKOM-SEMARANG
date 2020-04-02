@@ -34,6 +34,8 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
     private ResponseErrorModel responseErrorModels;
     private String idValidator;
     private String idAkun;
+    private String statusNotif;
+    private String messageNotif;
 
     public ValidatorAdapter(Context context, ArrayList<PelaporModel> pelaporModels) {
         this.context = context;
@@ -64,7 +66,8 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
             @Override
             public void onClick(View view) {
                 updateStatusValidatorKeTeknisi(pelaporModels.get(position).getIdPelapor(),idValidator,"Disetujui Validator");
-                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
+                statusNotif = "Disetujui ";
+                messageNotif = "Disetujui Milik Alat Produksi PT. TELKOM INDONESIA.";
 //                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, "id pelapor: " + pelaporModels.get(position).getIdPelapor() + "id validator: " + idValidator, Toast.LENGTH_SHORT).show();
             }
@@ -74,6 +77,8 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
             @Override
             public void onClick(View view) {
                 updateStatusValidatorKePelapor(pelaporModels.get(position).getIdPelapor(),idValidator, "Ditolak Validator");
+                statusNotif = "Ditolak ";
+                messageNotif = "Ditolak Bukan Milik Alat Produksi PT. TELKOM INDONESIA.";
             }
         });
 
@@ -88,7 +93,7 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
                         if (response.isSuccessful()){
                             responseErrorModels = response.body();
 //                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
-//                            getRegID(idAkun);
+                            getRegID(idAkun);
                             ((ValidatorNavActivity)context).setState();
                         }
                     }
@@ -127,11 +132,9 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
                             responseErrorModels = response.body();
-                            Toast.makeText(context, "Ditolak, Mengirim notifikasi ke Pelapor", Toast.LENGTH_SHORT).show();
-                            Config.pushNotif(context, "Ditolak oleh validator",
-                                    "Ditolak karena bukan Alat Produksi PT. TELKOM INDONESIA.",
-                                    "individual"
-                            ,responseErrorModels.getRegID());
+                            Config.pushNotif(context,  statusNotif+"oleh validator",
+                                    messageNotif,
+                                    "individual",responseErrorModels.getRegID());
                             ((ValidatorNavActivity)context).setState();
                         }
                     }
