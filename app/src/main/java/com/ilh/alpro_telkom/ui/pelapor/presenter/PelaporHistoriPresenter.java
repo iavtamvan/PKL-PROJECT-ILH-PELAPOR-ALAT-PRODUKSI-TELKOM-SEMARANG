@@ -6,7 +6,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ilh.alpro_telkom.adapter.PelaporHistoryAdapter;
+import com.ilh.alpro_telkom.ui.pelapor.adapter.PelaporHistoryAdapter;
 import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;

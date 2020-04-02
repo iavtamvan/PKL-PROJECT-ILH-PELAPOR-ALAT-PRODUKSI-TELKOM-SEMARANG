@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom;
+package com.ilh.alpro_telkom.ui.front;
 
 import android.Manifest;
 import android.app.NotificationManager;
@@ -19,21 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
-import com.ilh.alpro_telkom.ui.pelapor.PelaporNavActivity;
-import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
-import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
+import com.ilh.alpro_telkom.ui.pelapor.activity.PelaporNavActivity;
+import com.ilh.alpro_telkom.ui.teknisi.activity.TeknisiNavActivity;
+import com.ilh.alpro_telkom.ui.validator.activity.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;

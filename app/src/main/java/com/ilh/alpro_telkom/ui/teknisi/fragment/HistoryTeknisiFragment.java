@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.ui.teknisi;
+package com.ilh.alpro_telkom.ui.teknisi.fragment;
 
 
 import android.content.Context;
@@ -15,8 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ilh.alpro_telkom.R;
-import com.ilh.alpro_telkom.adapter.TeknisiAdapter;
-import com.ilh.alpro_telkom.adapter.TeknisiHistoryAdapter;
+import com.ilh.alpro_telkom.ui.teknisi.adapter.TeknisiHistoryAdapter;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;

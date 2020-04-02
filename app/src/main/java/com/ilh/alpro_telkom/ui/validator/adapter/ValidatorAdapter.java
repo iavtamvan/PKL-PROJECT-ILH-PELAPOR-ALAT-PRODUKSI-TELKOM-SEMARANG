@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.adapter;
+package com.ilh.alpro_telkom.ui.validator.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,7 +20,7 @@ import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
-import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
+import com.ilh.alpro_telkom.ui.validator.activity.ValidatorNavActivity;
 
 import java.util.ArrayList;
 
@@ -28,20 +28,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHolder> {
+public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.ViewHolder> {
     private Context context;
-
     private ArrayList<PelaporModel> pelaporModels;
     private ResponseErrorModel responseErrorModels;
-
-    private String idTeknisi;
-    private String idAkun;
     private String idValidator;
-    private String status;
+    private String idAkun;
 
-//    private ValidatorActivity validatorActivity;
-
-    public TeknisiAdapter(Context context, ArrayList<PelaporModel> pelaporModels) {
+    public ValidatorAdapter(Context context, ArrayList<PelaporModel> pelaporModels) {
         this.context = context;
         this.pelaporModels = pelaporModels;
     }
@@ -49,25 +43,15 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_teknisi, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_validator, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        idTeknisi = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
+        idValidator = sharedPreferences.getString(Config.SHARED_PREF_ID, "");
         idAkun = pelaporModels.get(position).getIdUserAkun();
-        idValidator = pelaporModels.get(position).getIdUserValidator();
-        status = pelaporModels.get(position).getStatus();
-        if (status.contains("Sedang Dalam Perbaikan")){
-            holder.btnYa.setVisibility(View.GONE);
-            holder.btnSelesai.setVisibility(View.VISIBLE);
-        } else {
-            holder.btnYa.setVisibility(View.VISIBLE);
-            holder.btnSelesai.setVisibility(View.GONE);
-        }
-
         Glide.with(context)
                 .load(pelaporModels.get(position)
                         .getUrlImage()).error(R.drawable.ic_launcher_background)
@@ -79,50 +63,63 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
         holder.btnYa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi,"Sedang Dalam Perbaikan");
+                updateStatusValidatorKeTeknisi(pelaporModels.get(position).getIdPelapor(),idValidator,"Disetujui Validator");
                 Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Disetujui", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "id pelapor: " + pelaporModels.get(position).getIdPelapor() + "id validator: " + idValidator, Toast.LENGTH_SHORT).show();
             }
         });
 
-        holder.btnSelesai.setOnClickListener(new View.OnClickListener() {
+        holder.btnTidak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateStatusValidator(pelaporModels.get(position).getIdPelapor(), idTeknisi, "Sudah Diselesaikan");
-                Toast.makeText(context, "Sudah Diselesaikan", Toast.LENGTH_SHORT).show();
+                updateStatusValidatorKePelapor(pelaporModels.get(position).getIdPelapor(),idValidator, "Ditolak Validator");
             }
         });
 
     }
 
-    private void updateStatusValidator(String idPelapor, String idTeknisi, final String status) {
+    private void updateStatusValidatorKeTeknisi(String idPelapor, String idValidator, String status) {
         ApiService apiService = ApiConfigServer.getApiService();
-        apiService.updateStatusTeknisi(idPelapor, idTeknisi, status)
+        apiService.updateStatusValidator(idPelapor, idValidator, status)
                 .enqueue(new Callback<ResponseErrorModel>() {
                     @Override
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
-                        if (response.isSuccessful()) {
+                        if (response.isSuccessful()){
                             responseErrorModels = response.body();
 //                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
-
-                            if (status.contains("Sedang Dalam Perbaikan")){
-                                ((TeknisiNavActivity)context).setState();
-                                getRegID(idValidator, "Mulai pengerjaan oleh teknisi", "Segera di tindaklanjuti oleh Teknisi.");
-                            } else if (status.contains("Sudah Diselesaikan")){
-                                ((TeknisiNavActivity)context).setState();
-                                getRegID(idAkun,"Sudah dilakukan pengerjaan", "Selesai diperbaiki.");
-                            }
-
+//                            getRegID(idAkun);
+                            ((ValidatorNavActivity)context).setState();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
-                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "updateValidator: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    private void updateStatusValidatorKePelapor(String idPelapor, String idValidator, String status) {
+        ApiService apiService = ApiConfigServer.getApiService();
+        apiService.updateStatusValidator(idPelapor, idValidator, status)
+                .enqueue(new Callback<ResponseErrorModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
+                        if (response.isSuccessful()){
+                            responseErrorModels = response.body();
+//                            Toast.makeText(context, "" + responseErrorModels.getErrorMsg(), Toast.LENGTH_SHORT).show();
+                            getRegID(idAkun);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
+                        Toast.makeText(context, "updateValidator: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void getRegID(String idAkun, final String tittle, final String message) {
+    private void getRegID(String idAkun) {
         ApiService apiService = ApiConfigServer.getApiService();
         apiService.getRegID("getTokenRegID", idAkun)
                 .enqueue(new Callback<ResponseErrorModel>() {
@@ -130,10 +127,12 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
                     public void onResponse(Call<ResponseErrorModel> call, Response<ResponseErrorModel> response) {
                         if (response.isSuccessful()){
                             responseErrorModels = response.body();
-                            Toast.makeText(context, "Mengirim notifikasi", Toast.LENGTH_SHORT).show();
-                            Config.pushNotif(context, tittle, message, "individual"
-                                    ,responseErrorModels.getRegID());
-
+                            Toast.makeText(context, "Ditolak, Mengirim notifikasi ke Pelapor", Toast.LENGTH_SHORT).show();
+                            Config.pushNotif(context, "Ditolak oleh validator",
+                                    "Ditolak karena bukan Alat Produksi PT. TELKOM INDONESIA.",
+                                    "individual"
+                            ,responseErrorModels.getRegID());
+                            ((ValidatorNavActivity)context).setState();
                         }
                     }
 
@@ -155,7 +154,6 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
         private TextView tvAlamatValidator;
         private Button btnYa;
         private Button btnTidak;
-        private Button btnSelesai;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -165,7 +163,6 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
             tvAlamatValidator = itemView.findViewById(R.id.tv_desk_alamat);
             btnYa = itemView.findViewById(R.id.btn_ya);
             btnTidak = itemView.findViewById(R.id.btn_tidak);
-            btnSelesai = itemView.findViewById(R.id.btn_selesai);
         }
     }
 }

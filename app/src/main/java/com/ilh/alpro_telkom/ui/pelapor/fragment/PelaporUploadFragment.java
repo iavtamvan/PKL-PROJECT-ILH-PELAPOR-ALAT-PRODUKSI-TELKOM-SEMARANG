@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.ui.pelapor;
+package com.ilh.alpro_telkom.ui.pelapor.fragment;
 
 
 import android.app.Activity;
@@ -32,6 +32,7 @@ import com.ilh.alpro_telkom.rest.ApiService;
 import com.ilh.alpro_telkom.rest.uploadImage.APIServiceUploadImage;
 import com.ilh.alpro_telkom.rest.uploadImage.Result;
 import com.ilh.alpro_telkom.rest.uploadImage.RetroClientUploadImage;
+import com.ilh.alpro_telkom.ui.pelapor.activity.PelaporNavActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

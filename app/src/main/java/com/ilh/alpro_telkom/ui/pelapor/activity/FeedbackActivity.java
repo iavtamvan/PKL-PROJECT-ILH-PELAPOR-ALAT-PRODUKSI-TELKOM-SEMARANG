@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.ui.pelapor;
+package com.ilh.alpro_telkom.ui.pelapor.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -39,7 +39,13 @@ public class FeedbackActivity extends AppCompatActivity {
 
 
     private double lamaPengerjaanBobot, kesesuaianBobot;
-    private float proFuzzyLamaPengerjaan, proFuzzyKesesuaian, grafikLamaPengerjaan, grafikKesesuaianPengerjaan, decimalLamaPengerjaan, decimalKesesuaianPengerjaan, totalFeedback, totalFeedbackFuzzy;
+    private float proFuzzyLamaPengerjaan;
+    private float grafikLamaPengerjaan;
+    private float grafikKesesuaianPengerjaan;
+    private float decimalLamaPengerjaan;
+    private float decimalKesesuaianPengerjaan;
+    private float totalFeedback;
+    private float totalFeedbackFuzzy;
     private int lamaPengerjaan, kesesuaian;
     private TextView tvDecLama;
     private TextView tvDecKes;
@@ -119,125 +125,24 @@ public class FeedbackActivity extends AppCompatActivity {
                 } else {
                     if (lamaPengerjaan == 2 && kesesuaian == 1) {
                         fuzzyLogic();
-
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Sangat Bagus");
                     } else if (lamaPengerjaan == 2 && kesesuaian == 0) {
                         fuzzyLogic();
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Buruk");
                     } else if (lamaPengerjaan == 7 && kesesuaian == 1) {
                         fuzzyLogic();
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Bagus");
                     } else if (lamaPengerjaan == 7 && kesesuaian == 0) {
                         fuzzyLogic();
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Buruk");
                     } else if (lamaPengerjaan == 1 && kesesuaian == 1) {
                         fuzzyLogic();
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Bagus");
                     } else if (lamaPengerjaan == 1 && kesesuaian == 0) {
                         fuzzyLogic();
-//                        totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
-//
-//                        proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100);
-//                        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100);
-//
-//                        grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.2 / 100);
-//                        grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.6 / 100);
-//
-////                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-////                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
-//
-//                        decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
-//                        decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-//
-//                        totalFeedbackFuzzy = decimalLamaPengerjaan / decimalKesesuaianPengerjaan;
-
                         tvNamaTeknisi.setText("Buruk");
                     }
                 }
-
-                // rumus fuzzynya
-
-//                totalFeedback = Float.parseFloat(new DecimalFormat("#.##").format(lamaPengerjaanBobot + kesesuaianBobot));
             }
         });
 
@@ -251,7 +156,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
         // Rumus 2
         proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100); // 100 adalah persen
-        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100); // 100 adalah persen
+        float proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100); // 100 adalah persen
 
         // Rumus 3
         grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.22 / 100); // 0.2 adalah range per bobot || 100 adalah persen

@@ -104,16 +104,4 @@ public interface ApiService {
             @Field("result") String  result
             );
 
-
-
-    @GET("firebase")
-    Call<ResponseBody> postDataNotif(
-            @Query("title") String title,
-            @Query("message") String message,
-            @Query("push_type") String push_type,
-            @Query("regId") String regId
-
-    );
-
-
 }

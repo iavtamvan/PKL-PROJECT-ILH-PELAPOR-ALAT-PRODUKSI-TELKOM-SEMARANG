@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom;
+package com.ilh.alpro_telkom.ui.front;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -14,10 +14,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
-import com.ilh.alpro_telkom.ui.pelapor.PelaporNavActivity;
-import com.ilh.alpro_telkom.ui.teknisi.TeknisiNavActivity;
-import com.ilh.alpro_telkom.ui.validator.ValidatorNavActivity;
+import com.ilh.alpro_telkom.ui.pelapor.activity.PelaporNavActivity;
+import com.ilh.alpro_telkom.ui.teknisi.activity.TeknisiNavActivity;
+import com.ilh.alpro_telkom.ui.validator.activity.ValidatorNavActivity;
 import com.ilh.alpro_telkom.util.NotificationUtils;
 
 public class SplashActivity extends AppCompatActivity {

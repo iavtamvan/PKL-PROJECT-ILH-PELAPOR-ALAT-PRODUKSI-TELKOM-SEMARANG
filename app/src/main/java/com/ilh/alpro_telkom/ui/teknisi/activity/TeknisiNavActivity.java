@@ -1,6 +1,5 @@
-package com.ilh.alpro_telkom.ui.teknisi;
+package com.ilh.alpro_telkom.ui.teknisi.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,7 +18,8 @@ import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
 import com.ilh.alpro_telkom.rest.ApiService;
-import com.ilh.alpro_telkom.ui.validator.DataPelaporFragment;
+import com.ilh.alpro_telkom.ui.teknisi.fragment.HistoryTeknisiFragment;
+import com.ilh.alpro_telkom.ui.teknisi.fragment.PekerjaanFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -38,7 +38,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.nio.channels.FileLock;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

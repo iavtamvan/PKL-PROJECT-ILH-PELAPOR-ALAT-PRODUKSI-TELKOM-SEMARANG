@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.ui.pelapor;
+package com.ilh.alpro_telkom.ui.validator.activity;
 
 import android.os.Bundle;
 
@@ -15,7 +15,8 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
-import com.ilh.alpro_telkom.ui.teknisi.PekerjaanFragment;
+import com.ilh.alpro_telkom.ui.validator.fragment.DataPelaporFragment;
+import com.ilh.alpro_telkom.ui.validator.fragment.HistoryValidatorFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -27,16 +28,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.widget.FrameLayout;
 
-public class PelaporNavActivity extends AppCompatActivity
+public class ValidatorNavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
     private FrameLayout fmViewPagerNav;
     private ViewPager viewpager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelapor_nav);
+        setContentView(R.layout.activity_validator_nav);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -55,20 +55,15 @@ public class PelaporNavActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new DataPelaporFragment()).commit();
+        getSupportActionBar().setTitle("Data Pelaporan");
+    }
 
+    public void setState(){
         fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PelaporUploadFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new DataPelaporFragment()).commit();
         getSupportActionBar().setTitle("Pekerjan ");
-    }
-    public void setup(){
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PelaporUploadFragment()).commit();
-        getSupportActionBar().setTitle("Pekerjan ");
-    }
-    public void setupFeedback(){
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new HistoriPelaporFragment()).commit();
-        getSupportActionBar().setTitle("Histori");
     }
     @Override
     public void onBackPressed() {
@@ -83,7 +78,7 @@ public class PelaporNavActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.pelapor_nav, menu);
+        getMenuInflater().inflate(R.menu.validator_nav, menu);
         return true;
     }
 
@@ -108,17 +103,16 @@ public class PelaporNavActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_pelaporan) {
+        if (id == R.id.data_pelapor) {
             fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new PelaporUploadFragment()).commit();
-            getSupportActionBar().setTitle("Pelaporan");
-        } else if (id == R.id.nav_histori) {
+            fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new DataPelaporFragment()).commit();
+            getSupportActionBar().setTitle("Data Pelaporan");
+        } else if (id == R.id.histori_validator) {
             fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new HistoriPelaporFragment()).commit();
-            getSupportActionBar().setTitle("Histori");
-        } else if (id == R.id.nav_logout) {
-            finishAffinity();
-            Config.logout(PelaporNavActivity.this);
+            fragmentManager.beginTransaction().replace(R.id.fm_view_pager_nav, new HistoryValidatorFragment()).commit();
+            getSupportActionBar().setTitle("Data Pelaporan");
+        } else if (id == R.id.logout) {
+            Config.logout(ValidatorNavActivity.this);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

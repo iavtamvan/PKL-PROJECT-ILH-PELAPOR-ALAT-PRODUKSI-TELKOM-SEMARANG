@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.ui.pelapor;
+package com.ilh.alpro_telkom.ui.pelapor.fragment;
 
 
 import android.content.Context;

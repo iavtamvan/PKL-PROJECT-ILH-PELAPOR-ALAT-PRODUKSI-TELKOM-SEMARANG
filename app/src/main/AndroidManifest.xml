@@ -22,28 +22,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.pelapor.FeedbackActivity"></activity>
+        <activity android:name=".ui.pelapor.activity.FeedbackActivity"></activity>
         <activity
-            android:name=".ui.pelapor.PelaporNavActivity"
+            android:name=".ui.pelapor.activity.PelaporNavActivity"
             android:label="@string/title_activity_pelapor_nav"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.validator.ValidatorNavActivity"
+            android:name=".ui.validator.activity.ValidatorNavActivity"
             android:label="@string/title_activity_validator_nav"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.teknisi.TeknisiNavActivity"
+            android:name=".ui.teknisi.activity.TeknisiNavActivity"
             android:label="@string/title_activity_teknisi_nav"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".ui.front.RegisterActivity" />
+        <activity android:name=".ui.front.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ui.front.LoginActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

@@ -3,11 +3,10 @@ package com.ilh.alpro_telkom.helper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import com.ilh.alpro_telkom.LoginActivity;
-import com.ilh.alpro_telkom.rest.ApiConfigServer;
-import com.ilh.alpro_telkom.rest.ApiService;
+import com.ilh.alpro_telkom.rest.serverSandec.ApiConfigServer;
+import com.ilh.alpro_telkom.rest.serverSandec.ApiService;
+import com.ilh.alpro_telkom.ui.front.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;

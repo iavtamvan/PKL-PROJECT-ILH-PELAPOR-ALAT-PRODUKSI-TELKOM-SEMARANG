@@ -1,9 +1,10 @@
-package com.ilh.alpro_telkom.adapter;
+package com.ilh.alpro_telkom.ui.teknisi.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,12 +18,15 @@ import com.ilh.alpro_telkom.model.ResponseErrorModel;
 
 import java.util.ArrayList;
 
-public class ValidatorHistoryAdapter extends RecyclerView.Adapter<ValidatorHistoryAdapter.ViewHolder> {
+public class TeknisiHistoryAdapter extends RecyclerView.Adapter<TeknisiHistoryAdapter.ViewHolder> {
     private Context context;
     private ArrayList<PelaporModel> pelaporModels;
     private ResponseErrorModel responseErrorModels;
     private String idPelapor;
-    public ValidatorHistoryAdapter(Context context, ArrayList<PelaporModel> pelaporModels) {
+
+//    private ValidatorActivity validatorActivity;
+
+    public TeknisiHistoryAdapter(Context context, ArrayList<PelaporModel> pelaporModels) {
         this.context = context;
         this.pelaporModels = pelaporModels;
     }
@@ -30,7 +34,7 @@ public class ValidatorHistoryAdapter extends RecyclerView.Adapter<ValidatorHisto
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_validator_history, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_teknisi_history, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,7 +49,6 @@ public class ValidatorHistoryAdapter extends RecyclerView.Adapter<ValidatorHisto
         holder.tvDeskValidator.setText(pelaporModels.get(position).getDeskripsi());
         holder.tvAlamatValidator.setText(pelaporModels.get(position).getAlamat());
         holder.tvAlamatStatus.setText(pelaporModels.get(position).getStatus());
-
     }
 
     @Override
@@ -58,6 +61,7 @@ public class ValidatorHistoryAdapter extends RecyclerView.Adapter<ValidatorHisto
         private TextView tvDeskValidator;
         private TextView tvAlamatValidator;
         private TextView tvAlamatStatus;
+        private Button btnYa;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +70,7 @@ public class ValidatorHistoryAdapter extends RecyclerView.Adapter<ValidatorHisto
             tvDeskValidator = itemView.findViewById(R.id.tv_desk_validator);
             tvAlamatValidator = itemView.findViewById(R.id.tv_desk_alamat);
             tvAlamatStatus = itemView.findViewById(R.id.tv_desk_status);
+            btnYa = itemView.findViewById(R.id.btn_ya);
         }
     }
 }

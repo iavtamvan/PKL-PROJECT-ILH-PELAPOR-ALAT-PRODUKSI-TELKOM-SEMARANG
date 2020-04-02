@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom;
+package com.ilh.alpro_telkom.ui.front;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,13 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
 import com.ilh.alpro_telkom.rest.ApiConfigServer;
@@ -75,7 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegistrasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                postData();
+                if (edtNamaLengkap.getText().toString().trim().isEmpty() || edtUsername.getText().toString().trim().isEmpty() || edtPassword.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Lengkapi data dahulu", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    postData();
+                }
 
             }
         });

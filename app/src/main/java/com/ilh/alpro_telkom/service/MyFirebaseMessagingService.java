@@ -16,7 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.ilh.alpro_telkom.R;
-import com.ilh.alpro_telkom.SplashActivity;
+import com.ilh.alpro_telkom.ui.front.SplashActivity;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.util.NotificationUtils;
 

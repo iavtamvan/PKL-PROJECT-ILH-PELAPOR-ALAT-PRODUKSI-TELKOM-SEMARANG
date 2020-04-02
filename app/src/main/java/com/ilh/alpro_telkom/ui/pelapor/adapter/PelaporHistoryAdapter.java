@@ -1,4 +1,4 @@
-package com.ilh.alpro_telkom.adapter;
+package com.ilh.alpro_telkom.ui.pelapor.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,15 +19,9 @@ import com.ilh.alpro_telkom.R;
 import com.ilh.alpro_telkom.helper.Config;
 import com.ilh.alpro_telkom.model.PelaporModel;
 import com.ilh.alpro_telkom.model.ResponseErrorModel;
-import com.ilh.alpro_telkom.rest.ApiConfigServer;
-import com.ilh.alpro_telkom.rest.ApiService;
-import com.ilh.alpro_telkom.ui.pelapor.FeedbackActivity;
+import com.ilh.alpro_telkom.ui.pelapor.activity.FeedbackActivity;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PelaporHistoryAdapter extends RecyclerView.Adapter<PelaporHistoryAdapter.ViewHolder> {
     private Context context;
