@@ -107,7 +107,7 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
                             if (status.contains("Sedang Dalam Perbaikan")){
                                 ((TeknisiNavActivity)context).setState();
                                 getRegID(idValidator, "Mulai pengerjaan oleh teknisi", "Segera di tindaklanjuti oleh Teknisi.");
-                                getRegID(idAkun,"Sudah dilakukan pengerjaan", "Selesai diperbaiki.");// optional
+                                getRegID(idAkun,"Mulai pengerjaan oleh teknisi", "Segera di tindaklanjuti oleh Teknisi.");// optional
                             } else if (status.contains("Sudah Diselesaikan")){
                                 ((TeknisiNavActivity)context).setState();
                                 getRegID(idAkun,"Sudah dilakukan pengerjaan", "Selesai diperbaiki.");
