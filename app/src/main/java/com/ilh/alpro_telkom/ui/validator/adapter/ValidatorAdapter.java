@@ -116,7 +116,6 @@ public class ValidatorAdapter extends RecyclerView.Adapter<ValidatorAdapter.View
                             getRegID(idAkun);
                         }
                     }
-
                     @Override
                     public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
                         Toast.makeText(context, "updateValidator: " + t.getMessage(), Toast.LENGTH_SHORT).show();
