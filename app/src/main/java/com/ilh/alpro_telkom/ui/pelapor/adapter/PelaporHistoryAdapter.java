@@ -62,7 +62,8 @@ public class PelaporHistoryAdapter extends RecyclerView.Adapter<PelaporHistoryAd
                 @Override
                 public void onClick(View view) {
                     if (pelaporModels.get(position).getIdUserTeknisi() == null || holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Ditolak Validator") ||
-                            holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Belum Disetujui") || holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Sedang Dalam Perbaikan")){
+                            holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Belum Disetujui") || holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Sedang Dalam Perbaikan")
+                    || holder.tvAlamatStatus.getText().toString().equalsIgnoreCase("Disetujui Validator")){
 //                        holder.btn_feedback.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View view) {

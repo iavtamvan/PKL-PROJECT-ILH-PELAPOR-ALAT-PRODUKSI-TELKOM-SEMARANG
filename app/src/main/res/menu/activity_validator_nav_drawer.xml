@@ -7,15 +7,15 @@
         <item
             android:id="@+id/data_pelapor"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Data Pelapor" />
+            android:title="Data Validasi Pelaporan" />
         <item
             android:id="@+id/histori_validator"
             android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
-            android:title="Histori" />
+            android:title="Histori Validator" />
         <item
             android:id="@+id/daftarkan_teknisi"
             android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
-            android:title="Daftarkan Teknisi" />
+            android:title="Registrasi Teknisi" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_slideshow"

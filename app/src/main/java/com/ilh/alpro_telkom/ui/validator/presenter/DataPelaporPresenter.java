@@ -37,7 +37,7 @@ public class DataPelaporPresenter {
 
             @Override
             public void onFailure(Call<ArrayList<PelaporModel>> call, Throwable t) {
-                Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
             }
         });
     }

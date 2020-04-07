@@ -7,11 +7,11 @@
         <item
             android:id="@+id/data_teknisi"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Data Teknisi" />
+            android:title="Data Pekerjaan Teknisi" />
         <item
             android:id="@+id/histori"
             android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
-            android:title="Histori" />
+            android:title="Histori Teknisi" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_slideshow"

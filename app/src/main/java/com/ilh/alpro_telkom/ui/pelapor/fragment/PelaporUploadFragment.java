@@ -194,7 +194,7 @@ public class PelaporUploadFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-                Toast.makeText(getActivity(), "Pilih Gambar Lagi " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Upload Gagal. Pilih Gambar Lagi", Toast.LENGTH_SHORT).show();
                 ivImagePealpor.setImageResource(R.drawable.camera);
                 p.dismiss();
             }
@@ -223,7 +223,7 @@ public class PelaporUploadFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
-                        Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
                         p.dismiss();
                     }
                 });

@@ -119,7 +119,7 @@ public class TeknisiAdapter extends RecyclerView.Adapter<TeknisiAdapter.ViewHold
 
                     @Override
                     public void onFailure(Call<ResponseErrorModel> call, Throwable t) {
-                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

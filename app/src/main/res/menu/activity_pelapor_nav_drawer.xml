@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_pelaporan"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Pelapor" />
+            android:title="Pelaporan Kerusakan Alat Produksi" />
         <item
             android:id="@+id/nav_histori"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Histori" />
+            android:title="Histori Pelapor" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
