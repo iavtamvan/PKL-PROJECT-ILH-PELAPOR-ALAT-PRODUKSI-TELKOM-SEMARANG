@@ -2,6 +2,7 @@ package com.ilh.alpro_telkom.ui.pelapor.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -192,6 +193,8 @@ public class FeedbackActivity extends AppCompatActivity {
                             editor.putString(Config.SHARED_PREF_FEEDBACK, "Sukses");
                             editor.apply();
                             Toast.makeText(FeedbackActivity.this, "Sukses Mengirim Feedback", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+                            startActivity(new Intent(getApplicationContext(), PelaporNavActivity.class));
                         } else {
                             Toast.makeText(FeedbackActivity.this, "Gagal Mengirim Feedback", Toast.LENGTH_SHORT).show();
                         }

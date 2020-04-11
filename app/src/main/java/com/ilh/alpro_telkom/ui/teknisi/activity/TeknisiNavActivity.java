@@ -119,7 +119,8 @@ public class TeknisiNavActivity extends AppCompatActivity
 //                                    Toast.makeText(TeknisiNavActivity.this, "Kosong", Toast.LENGTH_SHORT).show();
                                 } else {
                                     ratingBar.setRating(Float.valueOf(total_pointRating));
-                                    tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor " + "Poin anda " + total_pointRating);
+//                                    tvPenilaianDari.setText("Penilaian " + total_fedback_teknisi + " dari " + total_pelapor + " Seluruh Pelapor " + "Poin anda " + total_pointRating);
+                                    tvPenilaianDari.setText("Poin anda " + total_pointRating);
 
                                     // TODO 6 Disini tempatnya algoritma Fuzzy Logic rule 2
                                     double ratingToDouble = Double.parseDouble(total_pointRating);
