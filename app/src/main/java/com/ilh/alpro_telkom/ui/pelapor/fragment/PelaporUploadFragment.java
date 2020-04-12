@@ -88,7 +88,7 @@ public class PelaporUploadFragment extends Fragment {
             showDialog();
         }
         else {
-            Toast.makeText(getActivity(), "Aman", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "Aman", Toast.LENGTH_SHORT).show();
 //            Gakpapa
         }
         tvUsername.setText(sharedPreferences.getString(Config.SHARED_PREF_USERNAME, ""));

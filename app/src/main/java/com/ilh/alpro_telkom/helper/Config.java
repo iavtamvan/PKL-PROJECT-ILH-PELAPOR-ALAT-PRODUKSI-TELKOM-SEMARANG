@@ -86,6 +86,7 @@ public final class Config {
         editor.putString(Config.SHARED_PREF_ID, "");
         editor.putString(Config.SHARED_PREF_USERNAME, "");
         editor.putString(Config.SHARED_PREF_RULE, "");
+        editor.putString(Config.SHARED_PREF_FEEDBACK, "");
         editor.apply();
 
         context.startActivity(new Intent(context, LoginActivity.class));

@@ -70,6 +70,8 @@ public class PelaporHistoryAdapter extends RecyclerView.Adapter<PelaporHistoryAd
                                 Toast.makeText(context, "Pelaporan Belum Selesai, coba lagi nanti", Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
+                    } else if (pelaporModels.get(position).getStatus_feedback().equalsIgnoreCase("Sukses")){
+                        holder.btn_feedback.setVisibility(View.GONE); //Jika statu feedback sukses maka tombool Feedback hilang.
                     } else {
                         // Nanti disini ke halaman feedback
 

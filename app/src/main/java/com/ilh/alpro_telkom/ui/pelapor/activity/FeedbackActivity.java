@@ -111,8 +111,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdbTdkSesuai.setVisibility(View.GONE);
                 kesesuaianBobot = 0.44; // bobot
                 kesesuaian = 1; // sesuai
-                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
-                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
+                Log.d("fuzzy", "Pembobotan KesesuainBobot : " + kesesuaianBobot);
+                Log.d("fuzzy", "Kriteria KesesuainBobot : " + kesesuaian);
 
             }
         });
@@ -123,8 +123,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdbSesuai.setVisibility(View.GONE);
                 kesesuaianBobot = 0.88; // bobot
                 kesesuaian = 0; // tidak sesuai
-                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
-                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
+                Log.d("fuzzy", "Pembobotan KesesuainBobot : " + kesesuaianBobot);
+                Log.d("fuzzy", "Kriteria KesesuainBobot : " + kesesuaian);
             }
         });
 
@@ -198,6 +198,7 @@ public class FeedbackActivity extends AppCompatActivity {
         // TODO 5 OUTPUT dari fuzzy Logic.
         totalFeedbackFuzzy = Float.parseFloat(new DecimalFormat("#.##").format(decimalLamaPengerjaan / decimalKesesuaianPengerjaan));
         tvTotal.setText(String.valueOf(totalFeedbackFuzzy));
+        Log.d("fuzzy", "Output AlgoritmaFuzzyLogic : " + totalFeedbackFuzzy);
 
         posFeedback(tvTotal.getText().toString().trim(), tvDecLama.getText().toString().trim() , tvDecKes.getText().toString().trim());
     }
