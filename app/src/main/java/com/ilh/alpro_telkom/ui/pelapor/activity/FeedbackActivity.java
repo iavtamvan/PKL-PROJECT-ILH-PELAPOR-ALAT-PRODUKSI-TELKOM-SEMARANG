@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
     private double lamaPengerjaanBobot, kesesuaianBobot;
     private float proFuzzyLamaPengerjaan;
+    private float proFuzzyKesesuaian;
     private float grafikLamaPengerjaan;
     private float grafikKesesuaianPengerjaan;
     private float decimalLamaPengerjaan;
@@ -73,6 +75,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdb1hari.setVisibility(View.GONE);
                 lamaPengerjaanBobot = 0.99; // bobot
                 lamaPengerjaan = 2; // jam
+                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
+                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
             }
         });
         btnFdb7jam.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +87,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdb1hari.setVisibility(View.GONE);
                 lamaPengerjaanBobot = 0.77; // bobot
                 lamaPengerjaan = 7;// jam
+                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
+                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
             }
         });
         btnFdb1hari.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +99,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdb7jam.setVisibility(View.GONE);
                 lamaPengerjaanBobot = 0.55; // bobot
                 lamaPengerjaan = 1; // hari
+                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
+                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
             }
         });
 
@@ -103,6 +111,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdbTdkSesuai.setVisibility(View.GONE);
                 kesesuaianBobot = 0.44; // bobot
                 kesesuaian = 1; // sesuai
+                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
+                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
 
             }
         });
@@ -113,6 +123,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 btnFdbSesuai.setVisibility(View.GONE);
                 kesesuaianBobot = 0.88; // bobot
                 kesesuaian = 0; // tidak sesuai
+                Log.d("fuzzy", "Kriteria Lama Pengerjaan : " + lamaPengerjaan);
+                Log.d("fuzzy", "Pembobotan Lama Pengerjaan : " + lamaPengerjaanBobot);
             }
         });
 
@@ -127,21 +139,27 @@ public class FeedbackActivity extends AppCompatActivity {
                     if (lamaPengerjaan == 2 && kesesuaian == 1) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Sangat Bagus");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Sangat Bagus");
                     } else if (lamaPengerjaan == 2 && kesesuaian == 0) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Buruk");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Buruk");
                     } else if (lamaPengerjaan == 7 && kesesuaian == 1) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Bagus");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Bagus");
                     } else if (lamaPengerjaan == 7 && kesesuaian == 0) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Buruk");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Buruk");
                     } else if (lamaPengerjaan == 1 && kesesuaian == 1) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Bagus");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Bagus");
                     } else if (lamaPengerjaan == 1 && kesesuaian == 0) {
                         fuzzyLogic();
                         tvNamaTeknisi.setText("Buruk");
+                        Log.d("fuzzy", "Aturan/Rule 1 : Buruk");
                     }
                 }
             }
@@ -154,22 +172,25 @@ public class FeedbackActivity extends AppCompatActivity {
 
         // Rumus 1
         totalFeedback = (float) (lamaPengerjaanBobot + kesesuaianBobot);
+        Log.d("fuzzy", "Total Feedback (LamaPengerjaanBobot + KesesuaianBobot : " + totalFeedback);
 
         // Rumus 2
         proFuzzyLamaPengerjaan = (float) (lamaPengerjaanBobot / totalFeedback * 100); // 100 adalah persen
-        float proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100); // 100 adalah persen
+        proFuzzyKesesuaian = (float) (kesesuaianBobot / totalFeedback * 100); // 100 adalah persen
+        Log.d("fuzzy", "proFuzzyLamaPengerjaan (lamaPengerjaanBobot / totalFeedback * 100) : " + proFuzzyLamaPengerjaan);
+        Log.d("fuzzy", "proFuzzyKesesuaian (kesesuaianBobot / totalFeedback * 100) : " + proFuzzyKesesuaian);
 
         // Rumus 3
         grafikLamaPengerjaan = (float) (proFuzzyLamaPengerjaan * 0.22 / 100); // 0.2 adalah range per bobot || 100 adalah persen
         grafikKesesuaianPengerjaan = (float) (proFuzzyKesesuaian * 0.22 / 100); // 0.2 adalah range per bobot || 100 adalah persen
-
-//                    if (proFuzzyLamaPengerjaan == 0) grafikLamaPengerjaan = 1;
-//                    else grafikLamaPengerjaan =  (proFuzzyLamaPengerjaan * 0.2 / 100);
+        Log.d("fuzzy", "GrafikLamaPengerjaan (proFuzzyLamaPengerjaan * 0.22 / 100) : " + grafikLamaPengerjaan);
+        Log.d("fuzzy", "GrafikKesesuaianPengerjaan (proFuzzyLamaPengerjaan * 0.22 / 100) : " + grafikKesesuaianPengerjaan);
 
         // TODO 4 hasil dar perhitungan variabel menggunakan pendekatan grafik
         decimalLamaPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikLamaPengerjaan));
         decimalKesesuaianPengerjaan = Float.parseFloat(new DecimalFormat("#.##").format(grafikKesesuaianPengerjaan));
-
+        Log.d("fuzzy", "OutputDecimalLamaPengerjaan : " + decimalLamaPengerjaan);
+        Log.d("fuzzy", "OutputDecimalKesesuaianPengerjaan : " + decimalKesesuaianPengerjaan);
 
         tvDecKes.setText(String.valueOf(decimalKesesuaianPengerjaan));
         tvDecLama.setText(String.valueOf(decimalLamaPengerjaan));
